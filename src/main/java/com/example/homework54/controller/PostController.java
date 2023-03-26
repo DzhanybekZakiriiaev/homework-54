@@ -26,6 +26,10 @@ public class PostController {
     public ResponseEntity<Boolean> isLiked(@PathVariable String email, @PathVariable Integer postId) {
         return new ResponseEntity<>(postService.isLiked(email, postId), HttpStatus.OK);
     }
+    @GetMapping("/posts/all")
+    public ResponseEntity<List<Post>> getAllPosts() {
+        return new ResponseEntity<>(postService.getAllPosts(), HttpStatus.OK);
+    }
     @GetMapping("/posts/{email}")
     public ResponseEntity<List<Post>> getPosts(@PathVariable String email) {
         return new ResponseEntity<>(postService.getPosts(email), HttpStatus.OK);

@@ -26,6 +26,10 @@ public class PostDao {
                 "VALUES ('jane.doe@gmail.com'," + postId + ", '2022-03-16 12:05:00')";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Liked.class));
     }
+    public List<Post> getAllPosts(){
+        String sql = "select * from posts";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Post.class));
+    }
     public List<Post> getPosts(String email){
         String sql = "select * from posts where authorEmail = " + email;
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Post.class));

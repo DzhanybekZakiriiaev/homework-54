@@ -23,6 +23,9 @@ public class PostService {
     public List<Post> getPosts(String email){
         return postDao.getPosts(email);
     }
+    public List<Post> getAllPosts(){
+        return postDao.getAllPosts();
+    }
     public List<Post> getFyp(String email){
         List<Post> fyp = new ArrayList<>();
         User owner = null;
