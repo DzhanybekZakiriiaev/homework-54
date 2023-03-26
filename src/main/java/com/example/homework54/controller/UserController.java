@@ -1,5 +1,6 @@
 package com.example.homework54.controller;
 import com.example.homework54.dto.PostDTO;
+import com.example.homework54.dto.UserDTO;
 import com.example.homework54.entity.Comment;
 import com.example.homework54.entity.Post;
 import com.example.homework54.entity.User;
@@ -38,6 +39,10 @@ public class UserController {
     @GetMapping("/user/present/{email}")
     public ResponseEntity<Boolean> isRegistred(@PathVariable String email) {
         return new ResponseEntity<>(service.isRegistred(email), HttpStatus.OK);
+    }
+    @PostMapping("/reg")
+    public ResponseEntity<String> reg(@RequestBody UserDTO userData){
+        return new ResponseEntity<>(dataService.register(userData), HttpStatus.OK);
     }
     @PostMapping("/create")
     public ResponseEntity<String> create(){

@@ -1,6 +1,8 @@
 package com.example.homework54.service;
 import com.example.homework54.dto.PostDTO;
+import com.example.homework54.dto.UserDTO;
 import com.example.homework54.entity.Comment;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
@@ -74,9 +76,21 @@ public class DataService {
             return e.getMessage();
         }
     }
+    public String register(UserDTO userData){
+        try {
+            conn.createStatement().execute("INSERT INTO users (name, email, password, posts) " +
+                    "VALUES ('" + userData.getName() + "','" +
+                    userData.getEmail() + "','" +
+                    new BCryptPasswordEncoder().encode(userData.getPassword())
+                    +  "' , 0)");
+            return "All is OK";
+        } catch (SQLException e) {
+            return e.getMessage();
+        }
+    }
     public void insertValues() throws SQLException {
         String insertUserQuery = "INSERT INTO users (name, email, password, posts) " +
-                "VALUES ('John Smith', 'john.smith@gmail.com', 'password123', 2)";
+                "VALUES ('John Smith', 'john.smith@gmail.com','" + new BCryptPasswordEncoder().encode("password123") +  "' , 2)";
         executeUpdate(insertUserQuery);
         String insertPostQuery = "INSERT INTO post (image, description, dateTime, authorEmail) " +
                 "VALUES ('image.jpg', 'This is a post', '2022-03-16 12:00:00', 'john.smith@gmail.com')";

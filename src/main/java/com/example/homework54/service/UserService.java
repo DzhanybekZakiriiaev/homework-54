@@ -1,6 +1,7 @@
 package com.example.homework54.service;
 
 import com.example.homework54.dao.UserDao;
+import com.example.homework54.dto.UserDTO;
 import com.example.homework54.entity.Liked;
 import com.example.homework54.entity.Post;
 import com.example.homework54.entity.User;
